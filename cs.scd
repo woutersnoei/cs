@@ -18,6 +18,11 @@
 ~cs.timeScale = 10; 
 ~cs.loadBuffers({ 
 	~cs.globalStart;
+	{
+	 	MasterEQ(2);
+	 	s.volume = -12;
+	 	s.meter;
+ 	}.defer;
 }); "";
 )
 

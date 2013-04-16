@@ -7,6 +7,7 @@
 
 ~cs.klapperen.playTime = 10; // in minutes
 ~cs.klapperen.weight = 1; 
+~cs.klapperen.density = 0.75; 
 
 ~cs.klapperen.loadBuffers = { |evt, action|
 	evt.buffer =  Buffer.readChannel( s, thisProcess.nowExecutingPath.dirname.dirname +/+ 
@@ -76,7 +77,7 @@ SynthDef( "cs_klapperen", { |
 					loop {
 						timeToNext.wait;
 						timeToNext = 20 rrand: 60;
-						if(0.75.coin) {
+						if( evt.density.coin) {
 							Synth("cs_klapperen", [ 
 								\bufnum, evt.buffer, 
 								\freq, ({ 200 exprand: 7500 }!2).sort,

@@ -7,6 +7,7 @@
 
 ~cs.vogelspuur.playTime = 10; // in minutes
 ~cs.vogelspuur.weight = 1; 
+~cs.vogelspuur.density = 0.5; 
 
 ~cs.vogelspuur.loadBuffers = { |evt, action|
 	evt.buffers = Buffer.readDir( thisProcess.nowExecutingPath.dirname.dirname +/+ 
@@ -45,7 +46,7 @@ SynthDef( "cs_playbuf2", { |bufnum = 0,
 			\bufIndex, Pstutter( Pkey( \stutterTime ), Pwhite(0, evt.buffers.size.asInt - 1) ),
 			\dur, Pwhite( 0.1, 0) + Pstutter( Pkey( \stutterTime ), Pwhite( 0.5, 2.75 ) ),
 			\legato, Pstutter( Pkey( \stutterTime ), Pwrand([0.5,1],[0.1,0.9],inf)),
-			\amp, Pstutter( Pkey( \stutterTime ), Pwrand([0,1],[0.2,0.8],inf) 
+			\amp, Pstutter( Pkey( \stutterTime ), Pwrand([0,1],[1-evt.density,evt.density],inf) 
 				* Pfunc({ evt.amp ? 1 }) * 0.75),
 			\rate, Pwhite( 0.99, 1.01 ),
 			\bufnum, Pindex( evt.buffers, Pkey( \bufIndex ) , inf ),
@@ -55,7 +56,7 @@ SynthDef( "cs_playbuf2", { |bufnum = 0,
 					Pkey( \dur ) 
 				)
 			),
-			\verblevel, Pstutter( Pkey( \stutterTime ), Pwhite( 0.0, 0.25 ) ),
+			\verblevel, Pstutter( Pkey( \stutterTime ), Pwhite( 0.0, 0.125 ) ),
 			\pan, Pstutter( Pkey( \stutterTime ), Pwhite( -1.0, 1.0 ) )
 		).play;
 	});
@@ -70,7 +71,7 @@ SynthDef( "cs_playbuf2", { |bufnum = 0,
 		\startPos, 
 			Pwhite( 0, Pindex( evt.bufferLos.collect({ |item| (item.duration / 2).asInt }),
 				Pkey( \bufIndex ), inf ) ) * 2,
-		\verblevel, Pwhite( 0.0, 0.5 ),
+		\verblevel, Pwhite( 0.0, 0.25 ),
 		\pan, Pwhite( -1.0, 1.0 )
 	).play;
 };

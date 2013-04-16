@@ -7,6 +7,7 @@
 
 ~cs.wulpmix.playTime = 10; // in minutes
 ~cs.wulpmix.weight = 1; 
+~cs.wulpmix.density = 0.5; 
 
 ~cs.wulpmix.loadBuffers = { |evt, action|
 	evt.buffers = Buffer.readDir( thisProcess.nowExecutingPath.dirname.dirname +/+ 
@@ -71,7 +72,7 @@ SynthDef( "cs_playbuf_stretch", { |bufnum = 0, amp = 0.5, pan = 0, sustain = 1,
 			\bufnum, Prand( ~cs.wulpmix.buffers, inf ),
 			\dur, Pwhite( 5, 40, inf ),
 			\amp, Pwhite(0,1).linexp(0,1,0.5,1) * Pfunc({ evt.amp ? 0.5 }),
-			\legato, Prand([1,0.5], inf),
+			\legato, Prand([1,0.5] * evt.density, inf),
 			\stretch, Pwhite(0.0,1).linexp(0,1,0.75,3),
 			\rate, Pwhite(0.0,1).linexp(0,1,0.75,2),
 			\shuffleAmt, Prand([0,0.1], inf),
@@ -86,7 +87,7 @@ SynthDef( "cs_playbuf_stretch", { |bufnum = 0, amp = 0.5, pan = 0, sustain = 1,
 		\bufnum, Prand( ~cs.wulpmix.loopbuffers, inf ),
 		\dur, Pwhite( 5, 40, inf ),
 		\amp, Pfunc({ evt.amp ? 0.5 }),
-		\legato, Prand([2,1,0.5], inf)
+		\legato, Prand([2,1,0.5] * evt.density , inf)
 	).play;
 };
 

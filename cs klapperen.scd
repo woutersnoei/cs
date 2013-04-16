@@ -44,7 +44,7 @@ SynthDef( "cs_klapperen", { |
 	filtlevels = LFDNoise3.kr(0.05.dup(n)).exprange(0.125,1);
 	filtlevels = filtlevels / filtlevels.sum;
 	filtfreqs = Rand(freq[0].dup(n), freq[1]) * LFDNoise3.kr(0.05.dup(n)).exprange(0.98,1/0.98);
-	filtresses = LFDNoise3.kr(0.05.dup(n)).exprange(0.25,1) * res;
+	filtresses = LFDNoise3.kr(0.05.dup(n)).exprange(0.25,0.75) * res;
 	sig = (DynKlank.ar( `[ 
 		filtfreqs,
 		filtlevels, 
@@ -57,7 +57,7 @@ SynthDef( "cs_klapperen", { |
 	], sig ) * cutstartamp )
 	) * amp * 4;
 	sig = sig * SinOsc.ar(modfreq + Rand(-0.05.dup,0.05)).range(1-modrange,modrange);
-	sig = BHiShelf.ar( sig, 2000, 1, 10 );
+	sig = BHiShelf.ar( sig, 2000, 1, 6 );
 	sig = Limiter.ar( sig, amp );
 	sig = sig * env * Env.cutoff.kr(2,graingate);
 	PrivateOut.ar( 0, sig * LFDNoise3.kr(0.05).exprange(0.01,1) );

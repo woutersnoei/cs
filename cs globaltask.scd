@@ -38,7 +38,7 @@
 			if( index >= 0 ) {
 				weights.put( index, 0 );
 			};
-			index = (..weights.size-1).wchoose( weights );
+			index = (..weights.size-1).wchoose( weights.normalizeSum );
 			scapes.do(_.end);
 			scapes[index] !? _.start;
 			time = ((1 rrand: ((scapes[index] !? _.playTime) ? 10)) * evt.timeScale);

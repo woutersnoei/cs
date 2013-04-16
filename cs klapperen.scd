@@ -3,7 +3,7 @@
 
 ~cs.klapperen = ~cs.klapperen ? EM();
 
-~cs.klapperen.amp = 0.75;
+~cs.klapperen.amp = 0.5;
 
 ~cs.klapperen.playTime = 10; // in minutes
 ~cs.klapperen.weight = 1; 

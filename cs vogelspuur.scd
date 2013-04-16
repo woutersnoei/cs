@@ -42,7 +42,7 @@ SynthDef( "cs_playbuf2", { |bufnum = 0,
 	evt.pat1 = 2.collect({		
 		Pbind( 
 			\instrument, "cs_playbuf2",
-			\stutterTime, Pwhite( 1, 6 ),
+			\stutterTime, Pwhite( 1, 5 ),
 			\bufIndex, Pstutter( Pkey( \stutterTime ), Pwhite(0, evt.buffers.size.asInt - 1) ),
 			\dur, Pwhite( 0.1, 0) + Pstutter( Pkey( \stutterTime ), Pwhite( 0.5, 2.75 ) ),
 			\legato, Pstutter( Pkey( \stutterTime ), Pwrand([0.5,1],[0.1,0.9],inf)),

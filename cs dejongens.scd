@@ -4,7 +4,7 @@
 
 ~cs.dejongens = ~cs.dejongens ? EM();
 
-~cs.dejongens.playTime = 10; // in minutes
+~cs.dejongens.playTime = 20; // in minutes
 ~cs.dejongens.weight = 1; 
 
 ~cs.dejongens.loadBuffers = { |evt, action|

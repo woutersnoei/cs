@@ -21,6 +21,8 @@
 			cond.wait;
 			cond.test = false;
 		});
+		evt.losseroepen.loadBuffers( { cond.test = true; cond.signal } );
+		cond.wait;
 		action.value(evt);
 	}.fork;
 };
@@ -44,6 +46,7 @@
 			time.wait;
 		};
 	}.fork;
+	evt.losseroepen.start;
 };
 
 ~cs.startSpecific = { |evt, which|
@@ -53,6 +56,7 @@
 
 ~cs.globalEnd = { |evt|
 	evt.task.stop;
+	evt.losseroepen.end;
 	evt.stopAll;
 };
 

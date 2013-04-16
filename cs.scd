@@ -9,6 +9,7 @@
 	"spectrum",
 	"vogelspuur",
 	"wulpmix",
+	"losseroepen",
 	"globaltask",
 	"verb"
 ].do({ |item|
@@ -16,6 +17,7 @@
 });
 
 ~cs.timeScale = 10; 
+~cs.losseroepen.waitTime = 60;
 ~cs.loadBuffers({ 
 	~cs.globalStart;
 	{
@@ -33,4 +35,5 @@
 ~cs.startSpecific( \vogelspuur );
 ~cs.startSpecific( \wulpmix );
 ~cs.globalEnd;
+~cs.globalStart;
 */

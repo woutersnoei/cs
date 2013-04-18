@@ -3,7 +3,7 @@
 
 ~cs.losseroepen = ~cs.losseroepen ? EM();
 
-~cs.losseroepen.amp = 0.75;
+~cs.losseroepen.amp = 1.25;
 
 ~cs.losseroepen.waitTime = 30; // gemiddelde wachttijd
 
@@ -41,6 +41,8 @@ SynthDef( "cs_mokraai", { |bufnum = 0, amp = 0.1, pan = 0, verblevel = 0|
 SynthDef( "cs_mindyourwords", { |bufnum = 0, amp = 0.1, pan = 0, verblevel = 0|
 	var sig;
 	sig = PlayBuf.ar( 1, bufnum, doneAction: 2) * amp;
+	sig = BHiShelf.ar(sig, 1500, 1, 10 );
+	sig = BPeakEQ.ar(sig, 400, 1, -3 );
 	sig = Pan2.ar( sig, pan );
 	PrivateOut.ar( 0, sig * verblevel );
 	OffsetOut.ar( 0, sig );

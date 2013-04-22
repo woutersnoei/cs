@@ -29,6 +29,7 @@ SynthDef( "ws_verb%".format( q.verb.n ), { |in = 0, amp = 0.33, preDelay = 0, ou
 	var input, sig, env;
 	env = Env([0,1,1,0,0], [0.1,0,0.1, BufDur.ir( bufs[0] ) + preDelay ], \lin, 2 ).kr(2, gate );
 	input = In.ar( in + (FirstPrivateBus.ir * private), bufs.size );
+	input = RemoveBadValues.ar( input );
 	input = input + (input.sum * leak ) * env * amp ;
 	input = BHiShelf.ar( input, hishelfFreq, 1, hishelf );
 	input = DelayC.ar(input, 0.25, preDelay );
@@ -47,6 +48,7 @@ SynthDef( "ws_verb%_sum".format( q.verb.n ), { |in = 0, amp = 0.33, preDelay = 0
 	var input, sig, env;
 	env = Env([0,1,1,0,0], [0.1,0,0.1, BufDur.ir( bufs[0] ) + preDelay ], \lin, 3 ).kr(2, gate );
 	input = In.ar( in + (FirstPrivateBus.ir * private), bufs.size ).sum;
+	input = RemoveBadValues.ar( input );
 	input = input * env;
 	input = BHiShelf.ar( input, hishelfFreq, 1, hishelf );
 	input = DelayC.ar(input, 0.25, preDelay );

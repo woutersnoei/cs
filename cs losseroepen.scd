@@ -33,7 +33,7 @@
 SynthDef( "cs_mokraai", { |bufnum = 0, amp = 0.1, pan = 0, verblevel = 0|
 	var sig;
 	sig = PlayBuf.ar( 2, bufnum, doneAction: 2) * amp;
-	sig = BHiShelf.ar(sig, 1500, 1, 10 );
+	sig = BHiShelf.ar(sig, 1500, 1, 7 );
 	sig = BPeakEQ.ar(sig, 400, 1, -5 );
 	sig = Balance2.ar( sig[0], sig[1], pan );
 	PrivateOut.ar( 0, sig * verblevel );
@@ -66,13 +66,17 @@ SynthDef( "cs_meeuwenmix", { |bufnum = 0, sustain = 2, startOffset = 0,
 
 (
 ~cs.losseroepen.startMokraai = { |evt|
-	var startBuf;
-	startBuf = (evt.mokraai.size / 3).asInt.rand;
+	var startBuf, buffers, durs, amps, amp;
+	startBuf = (evt.mokraai.size / 3).asInt.rand * 3;
+	buffers = evt.mokraai[startBuf..startBuf+2];
+	durs = buffers.collect(_.duration);
+	amps = evt.mokraai_amps[startBuf..startBuf+2];
+	amp = evt.mokraai_amps.mean / amps.mean;
 	Pbind( 
 		\instrument, "cs_mokraai", 
-		\amp, evt.amp,
+		\amp, evt.amp * amp,
 		\bufnum, Pseq( evt.mokraai[startBuf..startBuf+2], 1 ),
-		\dur, 1.0 rrand: 1.4,
+		\dur, (1.0 rrand: 1.4) * durs.mean,
 		\pan, Pseq([0,1,2].linlin(0,2,1.0.rand2,1.0.rand2),1),
 		\verblevel, Pseq([0,1,2].linlin(0,2,0.1.rand,0.1.rand),1)
 	).play;
@@ -121,6 +125,10 @@ SynthDef( "cs_meeuwenmix", { |bufnum = 0, sustain = 2, startOffset = 0,
 ~cs.losseroepen.end = { |evt|
 	evt.task.stop;
 };
+
+(
+~cs.losseroepen.mokraai_amps = [ 0.458984375, 0.60861206054688, 0.48779296875, 0.44894409179688, 0.3907470703125, 0.5648193359375, 0.26461791992188, 0.33770751953125, 0.31021118164062, 0.4324951171875, 0.3212890625, 0.5074462890625, 0.18634033203125, 0.121826171875, 0.23248291015625, 0.04705810546875, 0.071319580078125, 0.10189819335938, 0.15725708007812, 0.1810302734375, 0.15740966796875, 0.343017578125, 0.376220703125, 0.27017211914062, 0.070526123046875, 0.097320556640625, 0.082611083984375, 0.092437744140625, 0.084503173828125, 0.12826538085938, 0.10214233398438, 0.11148071289062, 0.10784912109375, 0.0989990234375, 0.12762451171875, 0.12533569335938 ];
+);
 )
 
 /*

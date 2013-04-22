@@ -31,6 +31,7 @@ SynthDef( "cs_playbuf_long", { |bufnum = 0,
 		loop: 1,
 		lag: jumpTime * 0.25
 	) * amp;
+	sig = BLowCut.ar(sig,50,3);
 	sig = FreqShift.ar( sig, shift );
 	pan = LFDNoise3.kr(panSpeed);
 	sig = Balance2.ar( sig[0], sig[1], pan );

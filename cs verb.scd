@@ -14,7 +14,7 @@ q.verb.font = Font( Font.defaultSansFace, 10 );
 //q.verb.active = 0;
 q.verb.n = 2; // number of channels
 q.verb.fftsize= 2048; 
-q.verb.amp = 0.3;
+q.verb.amp = 0.2;
 q.verb.preDelay = 0;
 q.verb.dur = 1.8;
 q.verb.private = true;
@@ -128,7 +128,7 @@ q.verb.prepare({ q.verb.start });
 
 
 // window and views
-q.verb.w = Window( "verb", Rect(146, 365, 113, 84)).front;
+q.verb.w = Window( "verb", Rect(400, 400, 113, 84)).front;
 q.verb.w.addFlowLayout;
 q.verb.views = ();
 

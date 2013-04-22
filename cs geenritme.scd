@@ -9,8 +9,6 @@
 
 ~cs.geenRitme.amp = 0.75;
 
-~cs.geenRitme.verbose = true;
-
 ~cs.geenRitme.loadBuffers = { |evt, action|
 	evt.buffers = Buffer.readDir( 
 		thisProcess.nowExecutingPath.dirname.dirname +/+
@@ -85,7 +83,7 @@ SynthDef( "cs_free", { |amp = 0.4, bufnum = 0, startOffset = 0,
 			time = 20 rrand: 100; // 
 			offset = 0.0 rrand: (buf.duration - time);
 			// time.postln;
-			if( evt.verbose ) { "playing % % (geenritme)\n".postf( time.asSMPTEString, buf.path.basename ); };
+			if( ~cs.verbose ? true ) { "playing % % (geenritme)\n".postf( time.asSMPTEString, buf.path.basename ); };
 			Synth( "cs_free", [ 
 				\amp, evt.amp ? 0.3,
 				\bufnum, buf, 

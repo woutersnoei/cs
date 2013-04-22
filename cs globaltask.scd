@@ -10,7 +10,6 @@
 ~cs.useScapes = { |evt| evt.useNames.collect({ |item| evt[ item ] }) };
 
 ~cs.timeScale = 60; // minutes
-~cs.verbose = true;
 
 ~cs.loadBuffers = { |evt, action|
 	{
@@ -42,7 +41,7 @@
 			scapes.do(_.end);
 			scapes[index] !? _.start;
 			time = ((1 rrand: ((scapes[index] !? _.playTime) ? 10)) * evt.timeScale);
-			if( evt.verbose ) { "playing % %\n".postf( evt.useNames[index], time.asSMPTEString ) };
+			if( evt.verbose ? true ) { "playing % %\n".postf( evt.useNames[index], time.asSMPTEString ) };
 			time.wait;
 		};
 	}.fork;

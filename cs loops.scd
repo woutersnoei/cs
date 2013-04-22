@@ -424,7 +424,7 @@ SynthDef( "cs_singleloop", { |amp = 0.2, bufnum = 0, loopGate = 1|
 			[ "index" ++ i, (size/item).asInt.rand ]
 		}).flatten(1);
 	};
-	"playing % % (loop)\n".postf( dur.asSMPTEString, set.name );
+	if( ~cs.verbose ? true ) { "playing % % (loop)\n".postf( dur.asSMPTEString, set.name ); };
 	task = {
 		var t = loopdur;
 		

@@ -18,6 +18,7 @@
 
 ~cs.timeScale = 20; 
 ~cs.losseroepen.waitTime = 60;
+~cs.verbose = false;
 ~cs.loadBuffers({ 
 	~cs.globalStart;
 	{
@@ -36,4 +37,5 @@
 ~cs.startSpecific( \wulpmix );
 ~cs.globalEnd;
 ~cs.globalStart;
+~cs.verbose = true;
 */

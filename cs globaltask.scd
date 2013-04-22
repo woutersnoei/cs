@@ -26,41 +26,52 @@
 	}.fork;
 };
 
-~cs.globalStart = { |evt|
-	evt.globalEnd;
+~cs.startSoundScapes = { |evt, startWith|
+	evt.endSoundScapes;
 	evt.task = {
 		var scapes, weights, index = -1;
 		var time;
 		scapes = evt.useScapes;
+		index = (evt.useNames.size + 1).rand;
+		if( startWith.notNil ) { index = evt.useNames.indexOf( startWith ) ? index; };
 		loop { 
-			weights = scapes.collect(_.weight) ++ [1];
-			if( index >= 0 ) {
-				weights.put( index, 0 );
-			};
-			index = (..weights.size-1).wchoose( weights.normalizeSum );
 			scapes.do(_.end);
 			scapes[index] !? _.start;
 			time = ((1 rrand: ((scapes[index] !? _.playTime) ? 10)) * evt.timeScale);
 			if( evt.verbose ? true ) { "playing % %\n".postf( evt.useNames[index], time.asSMPTEString ) };
 			time.wait;
+			weights = scapes.collect(_.weight) ++ [1];
+			if( index >= 0 ) {
+				weights.put( index, 0 );
+			};
+			index = (..weights.size-1).wchoose( weights.normalizeSum );
 		};
 	}.fork;
+};
+
+~cs.endSoundScapes = { |evt|
+	evt.task.stop;
+	evt.useScapes.do(_.end);
+};
+
+~cs.startSpecific = { |evt, which, playForever = false|
+	if( playForever ) {
+		evt.endSoundScapes;
+		evt[ which ] !? _.start;
+	} {
+		evt.startSoundScapes( which );
+	}
+};
+
+~cs.globalStart = { |evt|
+	evt.globalEnd;
+	evt.startSoundScapes;
 	evt.losseroepen.start;
 };
 
-~cs.startSpecific = { |evt, which|
-	evt.globalEnd;
-	evt[ which ] !? _.start;
-};
-
 ~cs.globalEnd = { |evt|
-	evt.task.stop;
+	evt.endSoundScapes;
 	evt.losseroepen.end;
-	evt.stopAll;
-};
-
-~cs.stopAll = { |evt|
-	evt.useScapes.do(_.end)
 };
 
 )

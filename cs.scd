@@ -24,7 +24,8 @@
 	{
 	 	MasterEQ(2);
 	 	s.volume = -12;
-	 	s.meter;
+	 	x = s.meter;
+	 	x.window.bounds = x.window.bounds.left_( 650 ).top_(700);
  	}.defer;
 }); "";
 )

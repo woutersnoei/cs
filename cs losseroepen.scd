@@ -3,7 +3,7 @@
 
 ~cs.losseroepen = ~cs.losseroepen ? EM();
 
-~cs.losseroepen.amp = 1.25;
+~cs.losseroepen.amp = 1;
 
 ~cs.losseroepen.waitTime = 30; // gemiddelde wachttijd
 
@@ -33,6 +33,8 @@
 SynthDef( "cs_mokraai", { |bufnum = 0, amp = 0.1, pan = 0, verblevel = 0|
 	var sig;
 	sig = PlayBuf.ar( 2, bufnum, doneAction: 2) * amp;
+	sig = BHiShelf.ar(sig, 1500, 1, 10 );
+	sig = BPeakEQ.ar(sig, 400, 1, -5 );
 	sig = Balance2.ar( sig[0], sig[1], pan );
 	PrivateOut.ar( 0, sig * verblevel );
 	OffsetOut.ar( 0, sig );
@@ -41,8 +43,8 @@ SynthDef( "cs_mokraai", { |bufnum = 0, amp = 0.1, pan = 0, verblevel = 0|
 SynthDef( "cs_mindyourwords", { |bufnum = 0, amp = 0.1, pan = 0, verblevel = 0|
 	var sig;
 	sig = PlayBuf.ar( 1, bufnum, doneAction: 2) * amp;
-	sig = BHiShelf.ar(sig, 1500, 1, 10 );
-	sig = BPeakEQ.ar(sig, 400, 1, -3 );
+	sig = BHiShelf.ar(sig, 1500, 1, 14 );
+	sig = BPeakEQ.ar(sig, 400, 1, -5 );
 	sig = Pan2.ar( sig, pan );
 	PrivateOut.ar( 0, sig * verblevel );
 	OffsetOut.ar( 0, sig );
@@ -52,8 +54,10 @@ SynthDef( "cs_meeuwenmix", { |bufnum = 0, sustain = 2, startOffset = 0,
 		amp = 0.1, pan = 0, verblevel = 0|
 	var sig;
 	startOffset = startOffset * ( ( BufDur.kr( bufnum ) - sustain ) * SampleRate.ir );
-	sig = PlayBuf.ar( 2, bufnum, 1, 1, startOffset ) * amp;
+	sig = PlayBuf.ar( 2, bufnum, 1, 1, startOffset ) * 2 * amp;
 	sig = sig * Env([0,1,0], [0.5,0.5] * sustain, [-2,2]).kr(2);
+	sig = BPeakEQ.ar(sig, 1000, 1, 6 );
+	sig = BHiShelf.ar(sig, 1500, 1, -6 );
 	sig = Balance2.ar( sig[0], sig[1], pan );
 	PrivateOut.ar( 0, sig * verblevel );
 	OffsetOut.ar( 0, sig );
@@ -89,7 +93,7 @@ SynthDef( "cs_meeuwenmix", { |bufnum = 0, sustain = 2, startOffset = 0,
 		\startOffset, 1.0.rand,
 		\amp, evt.amp,
 		\pan, 1.0.rand2,
-		\verblevel, 0.1.rand
+		\verblevel, 0.2.rand
 	]);
 };
 );

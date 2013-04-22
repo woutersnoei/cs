@@ -24,9 +24,11 @@
 SynthDef( "cs_playbuf_loop",{  |bufnum = 0, amp = 0.5, sustain = 1, 
 		rate = 1, verblevel = 0,
 		fadeTime = 0.05, puurGate = 1|
-	var sig, pan;	
+	var sig, pan, freq;	
 	pan = LFDNoise3.kr( 0.1 );
 	sig = PlayBuf.ar( 2, bufnum, rate, loop: 1 ) * amp;
+	freq = SinOsc.kr( 1/Rand(10,15) ).exprange(1000,20000);
+	sig = OnePole.ar( sig, ( -2pi * (freq / SampleRate.ir) ).exp );
 	sig = Balance2.ar( sig[0], sig[1], pan );
 	sig = sig * Env([0,1,1,0],[
 		fadeTime,

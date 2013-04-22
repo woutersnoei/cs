@@ -83,9 +83,12 @@ SynthDef( "cs_meeuwenmix", { |bufnum = 0, sustain = 2, startOffset = 0,
 };
 
 ~cs.losseroepen.startMindyourwords = { |evt|
+	var index, amp;
+	index = evt.mindyourwords.size.asInt.rand;
+	amp = evt.mindyourwords_amps.mean / evt.mindyourwords_amps[ index ];
 	Synth( "cs_mindyourwords", [ 
-		\bufnum, evt.mindyourwords.choose, 
-		\amp, evt.amp,
+		\bufnum, evt.mindyourwords[ index ], 
+		\amp, evt.amp * amp * 0.75,
 		\pan, 1.0.rand2
 	]);
 };
@@ -129,6 +132,8 @@ SynthDef( "cs_meeuwenmix", { |bufnum = 0, sustain = 2, startOffset = 0,
 (
 ~cs.losseroepen.mokraai_amps = [ 0.458984375, 0.60861206054688, 0.48779296875, 0.44894409179688, 0.3907470703125, 0.5648193359375, 0.26461791992188, 0.33770751953125, 0.31021118164062, 0.4324951171875, 0.3212890625, 0.5074462890625, 0.18634033203125, 0.121826171875, 0.23248291015625, 0.04705810546875, 0.071319580078125, 0.10189819335938, 0.15725708007812, 0.1810302734375, 0.15740966796875, 0.343017578125, 0.376220703125, 0.27017211914062, 0.070526123046875, 0.097320556640625, 0.082611083984375, 0.092437744140625, 0.084503173828125, 0.12826538085938, 0.10214233398438, 0.11148071289062, 0.10784912109375, 0.0989990234375, 0.12762451171875, 0.12533569335938 ];
 );
+
+~cs.losseroepen.mindyourwords_amps = [ 0.056693185120821, 0.065642490983009, 0.1377746462822 ];
 )
 
 /*

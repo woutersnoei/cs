@@ -476,7 +476,7 @@ SynthDef( "cs_singleloop", { |amp = 0.2, bufnum = 0, loopGate = 1|
 		var time;
 		var weights;
 		
-		( 0 rrand: 160 ).wait;
+		( 0 rrand: 80 ).wait;
 		loop {
 			weights = evt.sets.collectAs({ |item| item.weight ? 1 }, Array);
 			weights[ last ] = 0;

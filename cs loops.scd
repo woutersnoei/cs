@@ -112,13 +112,6 @@
 	loopdur: 2,
 	weight: 0.25,
 	loopsets: [
-		drums: (
-			files: [
-				"drums.aif", 
-			],
-			density: 0.5, // 3 layers; 0 = no sound, 1 = always sound
-			crossfadeTime: 0.1
-		),
 		stoomhoorn: (
 			files: [
 				"stoomhoorn.aif", 
@@ -153,7 +146,7 @@
 			files: [
 				"drums.aif", 
 			],
-			density: 0.5,
+			density: 0.05,
 			crossfadeTime: 0.1
 		),
 		trein: (
@@ -276,7 +269,7 @@
 				"drums1(81 bpm).wav",
 				"drums2(81 bpm).wav",
 			],
-			density: 0.75, // 3 layers; 0 = no sound, 1 = always sound
+			density: 0.5, // 3 layers; 0 = no sound, 1 = always sound
 			crossfadeTime: 0.01
 		),
 		loop: (

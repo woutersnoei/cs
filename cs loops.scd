@@ -462,19 +462,20 @@ SynthDef( "cs_singleloop", { |amp = 0.2, bufnum = 0, loopGate = 1|
 );
 
 (
+~cs.loops.last = 0;
 ~cs.loops.start = { |evt|
 	evt.end;
 	evt.task = {
-		var last = 0, next = 0;
+		var next = 0;
 		var time;
 		var weights;
 		
 		( 0 rrand: 120 ).wait;
 		loop {
 			weights = evt.sets.collectAs({ |item| item.weight ? 1 }, Array);
-			weights[ last ] = 0;
+			weights[ evt.last ] = 0;
 			next = evt.sets.collectAs({ |item,i| i }, Array).wchoose( weights.normalizeSum );
-			last = next;
+			evt.last = next;
 			evt.startSet( 
 				evt.sets[ next ], 
 				time = (30 rrand: 90), 

@@ -17,7 +17,7 @@
 });
 
 ~cs.timeScale = 20; 
-~cs.losseroepen.waitTime = 60;
+~cs.losseroepen.waitTime = 120;
 ~cs.verbose = false;
 ~cs.loadBuffers({ 
 	~cs.globalStart;

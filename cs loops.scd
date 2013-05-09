@@ -469,7 +469,7 @@ SynthDef( "cs_singleloop", { |amp = 0.2, bufnum = 0, loopGate = 1|
 		var time;
 		var weights;
 		
-		( 0 rrand: 80 ).wait;
+		( 0 rrand: 120 ).wait;
 		loop {
 			weights = evt.sets.collectAs({ |item| item.weight ? 1 }, Array);
 			weights[ last ] = 0;
@@ -480,7 +480,7 @@ SynthDef( "cs_singleloop", { |amp = 0.2, bufnum = 0, loopGate = 1|
 				time = (30 rrand: 90), 
 				evt.amp ? 0.1
 			);
-			(time + ( 0 rrand: 160 )).wait;
+			(time + ( 0 rrand: 240 )).wait;
 				
 		};
 

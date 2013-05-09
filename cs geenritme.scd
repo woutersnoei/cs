@@ -17,6 +17,8 @@
 		action: { action.value( evt ) },
 		nlevels: 0
 	);
+	evt.indices = _.value!(evt.buffers.size);
+	evt.played = [];
 };
 
 /*
@@ -77,7 +79,14 @@ SynthDef( "cs_free", { |amp = 0.4, bufnum = 0, startOffset = 0,
 		var buf, time, offset;
 		var index = 0; 
 		loop {
-			index = evt.buffers.size.xrand( index );
+			//index = evt.buffers.size.xrand( index );
+			if( evt.indices.size == 0 ) {
+				evt.indices = evt.played;
+				evt.played = [];
+			};
+			index = evt.indices.choose;
+			evt.indices.remove( index );
+			evt.played = evt.played.add(index);
 			buf = evt.buffers[index];
 			//time = buf.duration * (0.5 rrand: 2);
 			time = 20 rrand: 100; // 

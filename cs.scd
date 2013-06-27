@@ -16,7 +16,7 @@
 	(thisProcess.nowExecutingPath.dirname +/+ "cs" + item ++ ".scd").load;
 });
 
-~cs.timeScale = 20; 
+~cs.timeScale = 30; 
 ~cs.losseroepen.waitTime = 120;
 ~cs.verbose = false;
 ~cs.loadBuffers({ 

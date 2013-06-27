@@ -218,6 +218,7 @@
 	begin: "pingintro.wav", 
 	loopdur: 1,
 	weight: 1,
+	gain: -6,
 	loopsets: [
 		ping1: (
 			files: [

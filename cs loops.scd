@@ -411,10 +411,11 @@ SynthDef( "cs_singleloop", { |amp = 0.2, bufnum = 0, loopGate = 1|
 	var loopdur, synths = (), introdur = 0;
 	var getIndices, task;
 	loopdur = set.loopsets[1].buffers[0].duration * (set.loopdur ? 1); 
+	amp = amp * (set.gain ? 0).dbamp;
 	getIndices = { |loopset|
 		var size = loopset.files.size;
 		loopset.density.asCollection.collect({ |item, i|
-			[ "index" ++ i, (size/item).asInt.rand ]
+			[ "index" ++ i, (size/item).rand.asInt ]
 		}).flatten(1);
 	};
 	if( ~cs.verbose ? true ) { "playing % % (loop)\n".postf( dur.asSMPTEString, set.name ); };

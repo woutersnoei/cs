@@ -327,7 +327,7 @@
 	var set = (
 		loopdur: 1,
 		weight: 1,
-		gain: 12,
+		gain: 12
 	);
 	path.basename[10..].postln;
 	path[ thisProcess.nowExecutingPath.dirname.dirname.size+1..].postln;

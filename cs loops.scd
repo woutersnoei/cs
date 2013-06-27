@@ -321,6 +321,53 @@
 	]
 );
 
+(
+(thisProcess.nowExecutingPath.dirname.dirname +/+ "CS 2013 Timon/Clusters/*/").pathMatch.do({ |path, i|
+	var subfolders, begin, paths;
+	var set = (
+		loopdur: 1,
+		weight: 1,
+		gain: 12,
+	);
+	path.basename[10..].postln;
+	path[ thisProcess.nowExecutingPath.dirname.dirname.size+1..].postln;
+	subfolders = (path +/+ "*/").pathMatch;
+	begin = subfolders.detect({ |item|
+		item.basename== "Intro";
+	});
+	subfolders.remove( begin );
+	if( begin.notNil ) {
+		begin = (begin +/+ "*.aif").pathMatch.first;
+		begin = begin.dirname.basename +/+ begin.basename;
+	};
+	subfolders.do({ |item|
+		(item +/+ "*.aif").pathMatch.do({ |subitem|
+			paths = paths.add( subitem.dirname.basename +/+ subitem.basename );
+		});
+	});	
+	
+	set[ \name ] = path.basename[10..];
+	set[ \folder ] = path[ thisProcess.nowExecutingPath.dirname.dirname.size+1..];
+	set[ \begin ] = begin;
+	set[ \loopsets ] = [];
+	paths.do({ |item, i|
+		set[ \loopsets ] = set[ \loopsets ].addAll([
+			item[path.basename.size + 8..].removeExtension.asSymbol,
+			(
+				files: [ item ],
+				density: ($1: 0.75, $2: 0.5, $3: 0.25)[ item[5] ] ? 1,
+				crossfadeTime: 0.01
+			)
+		]);
+	});
+	~cs.loops.sets[ i+12 ] = set;
+
+});
+);
+
+~cs.loops.sets[17].loopdur = 0.5;
+~cs.loops.sets[17].loopsets.pairsDo({ |a,b| b.crossfadeTime_(5) });
+
 ~cs.loops.loadBuffers = { |evt, action|
 	{
 		var cond;

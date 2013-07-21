@@ -3,7 +3,7 @@
 
 ~cs.spectrum = ~cs.spectrum ? EM();
 
-~cs.spectrum.amp = 1;
+~cs.spectrum.amp = 0.8;
 
 ~cs.spectrum.playTime = 10; // in minutes
 ~cs.spectrum.weight = 1; 

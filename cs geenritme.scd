@@ -7,7 +7,7 @@
 // load;
 ~cs.geenRitme.folder = "geenritme";
 
-~cs.geenRitme.amp = 0.75;
+~cs.geenRitme.amp = 0.8;
 
 ~cs.geenRitme.loadBuffers = { |evt, action|
 	evt.buffers = Buffer.readDir( 

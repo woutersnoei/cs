@@ -5,7 +5,7 @@
 
 ~cs.loops.sets = ~cs.loops.sets ? Order();
 
-~cs.loops.amp = 0.25;
+~cs.loops.amp = 0.33;
 
 ~cs.loops.sets[0] = (	
 	name: "footsteps1",

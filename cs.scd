@@ -21,6 +21,7 @@
 ~cs.verbose = false;
 ~cs.loadBuffers({ 
 	~cs.globalStart;
+	"started %\n".postf( Date.localtime );
 	{
 	 	MasterEQ(2);
 	 	s.volume = -12;

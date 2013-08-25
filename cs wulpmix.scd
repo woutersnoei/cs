@@ -7,7 +7,7 @@
 
 ~cs.wulpmix.playTime = 10; // in minutes
 ~cs.wulpmix.weight = 1; 
-~cs.wulpmix.density = 0.5; 
+~cs.wulpmix.density = 0.25; 
 
 ~cs.wulpmix.loadBuffers = { |evt, action|
 	evt.buffers = Buffer.readDir( thisProcess.nowExecutingPath.dirname.dirname +/+ 

@@ -7,7 +7,7 @@
 
 ~cs.vogelspuur.playTime = 10; // in minutes
 ~cs.vogelspuur.weight = 1; 
-~cs.vogelspuur.density = 0.5; 
+~cs.vogelspuur.density = 0.4; 
 
 ~cs.vogelspuur.loadBuffers = { |evt, action|
 	evt.buffers = Buffer.readDir( thisProcess.nowExecutingPath.dirname.dirname +/+ 

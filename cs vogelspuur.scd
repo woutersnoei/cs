@@ -79,7 +79,7 @@ SynthDef( "cs_playbuf2", { |bufnum = 0,
 ~cs.vogelspuur.end = { |evt|
 	evt.pat1.do(_.stop);
 	evt.pat2.stop;
-	RootNode(s).set( \playbuf2gate, 0 );
+	// RootNode(s).set( \playbuf2gate, 0 );
 };
 )
 

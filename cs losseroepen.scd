@@ -105,10 +105,19 @@ SynthDef( "cs_meeuwenmix", { |bufnum = 0, sustain = 2, startOffset = 0,
 };
 );
 
+~cs.losseroepen.setVolume = {
+	if( Date.localtime.hour.inclusivelyBetween( 2, 4 ) ) {
+		s.volume = -16.5;
+	} {
+		s.volume = -12;
+	};
+};
+
 /*
 ~cs.losseroepen.startMeeuwenmix;
 ~cs.losseroepen.startMindyourwords;
 ~cs.losseroepen.startMokraai;
+~cs.losseroepen.setVolume;
 */
 
 ~cs.losseroepen.start = { |evt|
@@ -120,6 +129,7 @@ SynthDef( "cs_meeuwenmix", { |bufnum = 0, sustain = 2, startOffset = 0,
 				\startMindyourwords,
 				\startMokraai
 			].choose );
+			evt.setVolume;
 			(evt.waitTime * (0.5 exprand: 2)).wait;
 		};
 	}).start;

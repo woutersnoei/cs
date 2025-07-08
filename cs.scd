@@ -18,7 +18,7 @@
 
 ~cs.timeScale = 60; 
 ~cs.losseroepen.waitTime = 120;
-~cs.verbose = false;
+~cs.verbose = true;
 ~cs.loadBuffers({ 
 	~cs.globalStart;
 	"started %\n".postf( Date.localtime );

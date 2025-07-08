@@ -3,7 +3,7 @@
 
 ~cs.losseroepen = ~cs.losseroepen ? EM();
 
-~cs.losseroepen.amp = 1;
+~cs.losseroepen.amp = 0.5;
 
 ~cs.losseroepen.waitTime = 30; // gemiddelde wachttijd
 

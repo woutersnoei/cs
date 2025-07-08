@@ -67,7 +67,7 @@ SynthDef( "cs_meeuwenmix", { |bufnum = 0, sustain = 2, startOffset = 0,
 (
 ~cs.losseroepen.startMokraai = { |evt|
 	var startBuf, buffers, durs, amps, amp;
-	startBuf = (evt.mokraai.size / 3).asInt.rand * 3;
+	startBuf = (evt.mokraai.size / 3).asInteger.rand * 3;
 	buffers = evt.mokraai[startBuf..startBuf+2];
 	durs = buffers.collect(_.duration);
 	amps = evt.mokraai_amps[startBuf..startBuf+2];
@@ -84,7 +84,7 @@ SynthDef( "cs_meeuwenmix", { |bufnum = 0, sustain = 2, startOffset = 0,
 
 ~cs.losseroepen.startMindyourwords = { |evt|
 	var index, amp;
-	index = evt.mindyourwords.size.asInt.rand;
+	index = evt.mindyourwords.size.asInteger.rand;
 	amp = evt.mindyourwords_amps.mean / evt.mindyourwords_amps[ index ];
 	Synth( "cs_mindyourwords", [ 
 		\bufnum, evt.mindyourwords[ index ], 

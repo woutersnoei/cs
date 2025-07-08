@@ -43,7 +43,7 @@ SynthDef( "cs_playbuf2", { |bufnum = 0,
 		Pbind( 
 			\instrument, "cs_playbuf2",
 			\stutterTime, Pwhite( 1, 5 ),
-			\bufIndex, Pstutter( Pkey( \stutterTime ), Pwhite(0, evt.buffers.size.asInt - 1) ),
+			\bufIndex, Pstutter( Pkey( \stutterTime ), Pwhite(0, evt.buffers.size.asInteger - 1) ),
 			\dur, Pwhite( 0.1, 0) + Pstutter( Pkey( \stutterTime ), Pwhite( 0.5, 2.75 ) ),
 			\legato, Pstutter( Pkey( \stutterTime ), Pwrand([0.5,1],[0.1,0.9],inf)),
 			\amp, Pstutter( Pkey( \stutterTime ), Pwrand([0,1],[1-evt.density,evt.density],inf) 
@@ -62,14 +62,14 @@ SynthDef( "cs_playbuf2", { |bufnum = 0,
 	});
 	evt.pat2 = Pbind( 
 		\instrument, "cs_playbuf2",
-		\bufIndex, Pwhite(0, evt.bufferLos.size.asInt - 1 ),
+		\bufIndex, Pwhite(0, evt.bufferLos.size.asInteger - 1 ),
 		\dur, Pstutter( Pwhite(1,3), Pwhite( 1, 15 ) ),
 		\sustain, 1.9,
 		\amp, Pwhite( 0.0, 1 ).linexp(0,1,0.25,1) * Pfunc({ evt.amp ? 1 }) ,
 		\rate, Pwhite( 0.99, 1.01 ),
 		\bufnum, Pindex( evt.bufferLos, Pkey( \bufIndex ), inf ),
 		\startPos, 
-			Pwhite( 0, Pindex( evt.bufferLos.collect({ |item| (item.duration / 2).asInt }),
+			Pwhite( 0, Pindex( evt.bufferLos.collect({ |item| (item.duration / 2).asInteger }),
 				Pkey( \bufIndex ), inf ) ) * 2,
 		\verblevel, Pwhite( 0.0, 0.25 ),
 		\pan, Pwhite( -1.0, 1.0 )
@@ -101,7 +101,7 @@ a = 2.collect({
 		Pbind( 
 		\instrument, "cs_playbuf2",
 		\stutterTime, Pwhite( 1, 6 ),
-		\bufIndex, Pstutter( Pkey( \stutterTime ), Pwhite(0, ~cs.vogelspuur.buffers.size.asInt - 1) ),
+		\bufIndex, Pstutter( Pkey( \stutterTime ), Pwhite(0, ~cs.vogelspuur.buffers.size.asInteger - 1) ),
 		\dur, Pwhite( 0.1, 0) + Pstutter( Pkey( \stutterTime ), Pwhite( 0.5, 2.5 ) ),
 		\legato, Pstutter( Pkey( \stutterTime ), Pwrand([0.5,1],[0.1,0.9],inf)),
 		\amp, Pstutter( Pkey( \stutterTime ), Pwrand([0,1],[0.25,0.75],inf) * 0.75 ),
@@ -123,7 +123,7 @@ a = 2.collect({
 b.stop;
 b = Pbind( 
 	\instrument, "cs_playbuf2",
-	//\bufIndex, Pwhite(0, ~cs.vogelspuur.bufferLos.size.asInt - 1 ),
+	//\bufIndex, Pwhite(0, ~cs.vogelspuur.bufferLos.size.asInteger - 1 ),
 	\bufIndex, 0,
 	\dur, Pstutter( Pwhite(1,3), Pwhite( 1, 15 ) ),
 	//\dur, 2,
@@ -132,7 +132,7 @@ b = Pbind(
 	\rate, Pwhite( 0.99, 1.01 ),
 	\bufnum, Pindex( ~cs.vogelspuur.bufferLos, Pkey( \bufIndex ), inf ),
 	\startPos, 
-		Pwhite( 0, Pindex( ~cs.vogelspuur.bufferLos.collect({ |item| (item.duration / 2).asInt }),
+		Pwhite( 0, Pindex( ~cs.vogelspuur.bufferLos.collect({ |item| (item.duration / 2).asInteger }),
 			Pkey( \bufIndex ), inf ) ) * 2,
 	\verblevel, Pwhite( 0.0, 0.5 ),
 	\pan, Pwhite( -1.0, 1.0 )

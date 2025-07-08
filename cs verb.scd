@@ -180,7 +180,7 @@ q.verb.ctrl = SimpleController( q.verb )
 if( e.notNil )
 	{
 		e.coupleSlider( q.verb.offset, { |sl| q.verb.views.amp.valueAction = sl.value }, "verb" );
-		e.actions.button.rec[q.verb.offset] = { |bt|  q.verb.views.power.valueAction = bt.value.asInt };		e.sliders[q.verb.offset].valueAction = q.verb.amp;
+		e.actions.button.rec[q.verb.offset] = { |bt|  q.verb.views.power.valueAction = bt.value.asInteger };		e.sliders[q.verb.offset].valueAction = q.verb.amp;
 		e.buttons.rec[q.verb.offset].valueAction = 0;		
 	};
 

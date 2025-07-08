@@ -463,7 +463,7 @@ SynthDef( "cs_singleloop", { |amp = 0.2, bufnum = 0, loopGate = 1|
 	getIndices = { |loopset|
 		var size = loopset.files.size;
 		loopset.density.asCollection.collect({ |item, i|
-			[ "index" ++ i, (size/item).rand.asInt ]
+			[ "index" ++ i, (size/item).rand.asInteger ]
 		}).flatten(1);
 	};
 	if( ~cs.verbose ? true ) { "playing % % (loop)\n".postf( dur.asSMPTEString, set.name ); };

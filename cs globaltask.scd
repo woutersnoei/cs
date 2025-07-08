@@ -32,7 +32,7 @@
 		var scapes, weights, index = -1;
 		var time;
 		scapes = evt.useScapes;
-		index = (evt.useNames.size + 1).rand;
+		index = evt.useNames.size.rand;
 		if( startWith.notNil ) { index = evt.useNames.indexOf( startWith ) ? index; };
 		loop { 
 			scapes.do(_.end);

@@ -39,5 +39,6 @@
 ~cs.startSpecific( \wulpmix );
 ~cs.globalEnd;
 ~cs.globalStart;
+~cs.startSoundScapes;
 ~cs.verbose = true;
 */
